@@ -1,0 +1,42 @@
+.registerBtn {
+  border: none;
+  border-radius: 30px;
+  padding: 15px 35px;
+  background-color: #f6b83d;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: 50px;
+}
+
+.registerBtn:hover {
+  background: #f9b020;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Стилі для домашньої сторінки */
+.registerBtnHome {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: var(--white) !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  padding: 15px 20px !important;
+}
+
+.registerBtnHome:hover {
+  background-color: transparent !important;
+  border-color: var(--white) !important;
+  color: var(--white) !important;
+}

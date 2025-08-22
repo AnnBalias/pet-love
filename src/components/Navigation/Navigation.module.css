@@ -1,0 +1,37 @@
+.navList {
+    display: flex;
+    gap: 10px;
+    margin-right: auto;
+}
+
+.link {
+    border: 1px solid rgba(38, 38, 38, 0.15);
+    border-radius: 30px;
+    padding: 15px 20px;
+    font-size: 16px;
+    letter-spacing: -0.03em;
+    color: var(--black);
+    transition: all 0.2s ease;
+}
+
+.link:hover {
+    border-color: var(--accent);
+}
+
+.active {
+    border: 1px solid #f6b83d;
+}
+
+/* Стилі для домашньої сторінки */
+.linkHome {
+    color: var(--white) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.linkHome:hover {
+    border-color: var(--white) !important;
+}
+
+.linkHome.active {
+    border: 1px solid var(--white) !important;
+}

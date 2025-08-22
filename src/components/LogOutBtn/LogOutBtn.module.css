@@ -1,0 +1,24 @@
+.logoutBtn {
+  border: none;
+  border-radius: 30px;
+  padding: 15px 35px;
+  background-color: #f6b83d;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+.logoutBtn:hover {
+  background: #f9b020;
+}
+
