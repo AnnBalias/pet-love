@@ -12,12 +12,14 @@
 }
 
 body {
+  background-color: #f9f9f9;;
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
   color: var(--black);
+  margin: 0;
 }
 
 h1,
