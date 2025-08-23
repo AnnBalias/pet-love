@@ -10,8 +10,13 @@ export default defineConfig({
         manualChunks: undefined,
       },
     },
+    outDir: 'dist',
   },
   server: {
     historyApiFallback: true,
+  },
+  preview: {
+    port: 3000,
+    host: true,
   },
 });
