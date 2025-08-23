@@ -1,0 +1,43 @@
+.homePageInfo {
+    background-color: var(--accent);
+    border-radius: 60px;
+    width: 100%;
+    height: 384px;
+    position: relative;
+    margin-top: -101px;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    padding: 32px 64px
+}
+
+.homePageTitle {
+    min-width: 760px;
+    font-size: 90px;
+    line-height: 0.96667;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-right: 73px;
+}
+
+.homePageTitleSpan {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.homePageText {
+    font-size: 18px;
+    line-height: 1.22222;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+.homePageImg {
+    background-image: url('../../assets/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 384px;
+    border-radius: 60px;
+    margin-bottom: 16px;
+}
