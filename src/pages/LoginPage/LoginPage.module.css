@@ -1,0 +1,73 @@
+.loginPage {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+}
+
+.imgBox {
+    position: relative;
+    width: 592px;
+    height: 654px;
+    border-radius: 60px;
+    background-image: url('../../assets/images/login-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.textBlock {
+    position: absolute;
+    bottom: 97px;
+    left: 61px;
+    border-radius: 20px;
+    width: 294px;
+    height: 121px;
+    background-color: var(--white);
+    padding: 16px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.dogImg {
+    background-color: #fff4df;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    padding: 12px 14px 16px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.textTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+}
+
+.name {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: var(--accent);    
+}
+
+.birthday {
+    font-size: 12px;
+    line-height: 1.16667;
+    letter-spacing: -0.02em;
+}
+
+.birthdaySpan {
+    color: rgba(38, 38, 38, 0.5);
+}
+
+.description {
+    font-size: 12px;
+    line-height: 1.16667;
+    letter-spacing: -0.02em;
+    color: rgba(38, 38, 38, 0.8);
+}

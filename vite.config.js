@@ -14,6 +14,13 @@ export default defineConfig({
   },
   server: {
     historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: 'https://petlove.b.goit.study',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
   preview: {
     port: 3000,

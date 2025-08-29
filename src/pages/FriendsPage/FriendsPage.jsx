@@ -25,12 +25,25 @@ function FriendsPage() {
 
         setFriends(data);
       } catch (err) {
+        console.error('Failed to load friends:', err);
+        
         if (err.message.includes('404') || err.message.includes('Not Found')) {
           navigate('/404');
           return;
         }
 
-        setError(`Failed to load friends: ${err.message}`);
+        // Більш детальні повідомлення про помилки
+        let errorMessage = 'Failed to load friends.';
+        
+        if (err.message.includes('Network error')) {
+          errorMessage = 'Network error. Please check your internet connection.';
+        } else if (err.message.includes('Server error')) {
+          errorMessage = 'Server is temporarily unavailable. Please try again later.';
+        } else if (err.message) {
+          errorMessage = `Failed to load friends: ${err.message}`;
+        }
+        
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }

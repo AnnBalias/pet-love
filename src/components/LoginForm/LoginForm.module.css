@@ -1,0 +1,239 @@
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.loginForm {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  letter-spacing: -0.02em;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #fff;
+  width: 100%;
+}
+
+.inputWrapper .input {
+  padding-right: 48px; /* Місце для іконки */
+}
+
+.checkIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #4CAF50;
+}
+
+.crossIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #ff6b6b;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordWrapper .input {
+  padding-right: 80px; /* Місце для іконки ока та іконки валідації */
+}
+
+.passwordWrapper .checkIcon,
+.passwordWrapper .crossIcon {
+  right: 48px; /* Розташовуємо іконки валідації зліва від іконки ока */
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(246, 184, 61, 0.1);
+}
+
+.inputError {
+  border-color: #ff6b6b;
+}
+
+.inputError:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.errorMessage {
+  background-color: #fff5f5;
+  border: 1px solid #ff6b6b;
+  border-radius: 8px;
+  color: #ff6b6b;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyeButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.eyeButton:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 2px rgba(246, 184, 61, 0.3);
+}
+
+.eyeIcon {
+  width: 20px;
+  height: 20px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.eyeButton:hover .eyeIcon {
+  color: var(--accent);
+}
+
+.submitButton {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submitButton:hover {
+  background: #e5a635;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(246, 184, 61, 0.3);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submitButton:disabled:hover {
+  background-color: #ccc;
+  transform: none;
+  box-shadow: none;
+}
+
+.linkContainer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e1e5e9;
+}
+
+.linkText {
+  color: #666;
+  font-size: 14px;
+}
+
+.link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #e5a635;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .loginForm {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+}

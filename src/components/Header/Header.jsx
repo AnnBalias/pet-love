@@ -4,10 +4,11 @@ import css from './Header.module.css';
 import Navigation from '../Navigation/Navigation';
 import NavigationAuth from '../NavigationAuth/NavigationAuth';
 import NavigationUser from '../NavigationUser/NavigationUser';
+import { useUser } from '../../contexts/UserContext';
 
 function Header({ isHome = false }) {
-  // TODO: Отримувати стан авторизації з Redux store
-  const isAuthenticated = false; // Тимчасово false, потім буде з Redux
+  const { user } = useUser();
+  const isAuthenticated = !!user;
 
   const headerClassName = isHome
     ? `${css.header} ${css.headerHome}`

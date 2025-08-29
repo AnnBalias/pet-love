@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import { UserProvider } from './contexts/UserContext';
 import Layout from './components/Layout/Layout';
 import HomePage from './pages/HomePage/HomePage';
 import NewsPage from './pages/NewsPage/NewsPage';
@@ -12,18 +13,20 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<NoticesPage />} />
-        <Route path="friends" element={<FriendsPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <UserProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="news" element={<NewsPage />} />
+          <Route path="notices" element={<NoticesPage />} />
+          <Route path="friends" element={<FriendsPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </UserProvider>
   );
 }
 

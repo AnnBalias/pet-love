@@ -1,17 +1,19 @@
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
+import { useUser } from '../../contexts/UserContext';
 import css from './UserBar.module.css';
 
 function UserBar({ isHome = false }) {
-  // TODO: Отримувати дані користувача з Redux store
-  const user = {
-    name: 'John Doe',
-    avatar: null, // null для дефолтного фото
-  };
+  const { user } = useUser();
 
   const userBarClassName = isHome
     ? `${css.userBar} ${css.userBarHome}`
     : css.userBar;
+
+  // Якщо користувач не авторизований, не показуємо UserBar
+  if (!user) {
+    return null;
+  }
 
   return (
     <Link to="/profile" className={userBarClassName}>
@@ -22,7 +24,7 @@ function UserBar({ isHome = false }) {
           <Icon name="user" className={css.defaultAvatar} />
         )}
       </div>
-      <span className={css.name}>{user.name}</span>
+      <span className={css.name}>{user.nickname || user.name}</span>
     </Link>
   );
 }
