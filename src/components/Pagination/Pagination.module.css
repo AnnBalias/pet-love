@@ -1,0 +1,184 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 48px 0;
+  flex-wrap: wrap;
+  padding: 24px;
+  background-color: var(--white);
+  border-radius: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #e0e0e0;
+  background-color: var(--white);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.paginationButton:hover:not(:disabled) {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f8f9fa;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.doubleLeftIcon,
+.doubleRightIcon {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+  position: absolute;
+}
+
+.doubleLeftIcon:first-child {
+  left: 8px;
+}
+
+.doubleLeftIcon:last-child {
+  left: 16px;
+}
+
+.doubleRightIcon:first-child {
+  right: 16px;
+}
+
+.doubleRightIcon:last-child {
+  right: 8px;
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 4px;
+}
+
+.pageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
+  padding: 0 16px;
+  border: 2px solid #e0e0e0;
+  background-color: var(--white);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--black);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.pageButton.activePage {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.pageButton.activePage:hover {
+  background-color: #e5a636;
+  border-color: #e5a636;
+  transform: translateY(-1px);
+}
+
+.pageButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 768px) {
+  .pagination {
+    gap: 8px;
+    padding: 20px;
+    margin: 32px 0;
+  }
+  
+  .paginationButton,
+  .pageButton {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+  
+  .pageButton {
+    padding: 0 12px;
+    font-size: 14px;
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .doubleLeftIcon,
+  .doubleRightIcon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    gap: 6px;
+    padding: 16px;
+  }
+  
+  .paginationButton,
+  .pageButton {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+  
+  .pageButton {
+    padding: 0 8px;
+    font-size: 13px;
+  }
+  
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .doubleLeftIcon,
+  .doubleRightIcon {
+    width: 10px;
+    height: 10px;
+  }
+}

@@ -1,0 +1,136 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 54px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin: 0 0 20px 0;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.22222;
+  letter-spacing: -0.02em;
+  color: rgba(38, 38, 38, 0.7);
+  margin: 0;
+}
+
+.errorContainer {
+  text-align: center;
+  padding: 40px 24px;
+  background-color: var(--white);
+  border-radius: 30px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.errorMessage {
+  font-size: 16px;
+  color: #ff6b6b;
+  margin: 0 0 20px 0;
+  font-weight: 500;
+}
+
+.retryButton {
+  background-color: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+}
+
+.retryButton:hover {
+  background-color: #e5a636;
+  transform: translateY(-1px);
+}
+
+.searchResults {
+  margin-bottom: 32px;
+  text-align: center;
+  padding: 16px 24px;
+  background-color: var(--light-accent);
+  border-radius: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resultsInfo {
+  font-size: 16px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .container {
+    padding: 32px 16px;
+  }
+  
+  .header {
+    margin-bottom: 40px;
+  }
+  
+  .title {
+    font-size: 36px;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+  }
+  
+  .errorContainer {
+    padding: 32px 20px;
+  }
+  
+  .errorMessage {
+    font-size: 14px;
+  }
+  
+  .retryButton {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .resultsInfo {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 24px 12px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+  }
+}

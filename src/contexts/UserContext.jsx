@@ -14,7 +14,6 @@ export function UserProvider({ children }) {
         const currentUser = await api.getCurrentUser();
         setUser(currentUser);
       } catch (error) {
-        console.error('Failed to get current user:', error);
         setUser(null);
       } finally {
         setIsLoading(false);

@@ -1,7 +1,6 @@
 import css from './FriendsItem.module.css';
 
 function FriendsItem({ friend }) {
-  console.log(friend);
 
   // Функція для отримання поточного дня тижня (0 = неділя, 1 = понеділок, ...)
   const getCurrentDayOfWeek = () => {
