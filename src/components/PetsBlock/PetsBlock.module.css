@@ -1,0 +1,20 @@
+.petsBlock {
+  margin-bottom: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0;
+  color: #2b2b2a;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* PetsBlock now only contains header styles, 
+   other styles moved to individual components */

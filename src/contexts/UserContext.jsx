@@ -1,7 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { api } from '../services/api';
-
-const UserContext = createContext();
+import { UserContext } from './contexts';
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -13,7 +12,7 @@ export function UserProvider({ children }) {
       try {
         const currentUser = await api.getCurrentUser();
         setUser(currentUser);
-      } catch (error) {
+      } catch {
         setUser(null);
       } finally {
         setIsLoading(false);
@@ -49,11 +48,5 @@ export function UserProvider({ children }) {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 
-export function useUser() {
-  const context = useContext(UserContext);
-  if (context === undefined) {
-    throw new Error('useUser must be used within a UserProvider');
-  }
-  return context;
-}
+
 

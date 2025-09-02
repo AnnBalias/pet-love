@@ -1,25 +1,25 @@
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 64px 20px;
+  padding: 32px 16px;
   min-height: 100vh;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .title {
-  font-size: 54px;
+  font-size: 32px;
   line-height: 1;
   letter-spacing: -0.03em;
   color: var(--black);
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
 }
 
 .subtitle {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.22222;
   letter-spacing: -0.02em;
   color: rgba(38, 38, 38, 0.7);
@@ -28,10 +28,10 @@
 
 .errorContainer {
   text-align: center;
-  padding: 40px 24px;
+  padding: 24px 16px;
   background-color: var(--white);
-  border-radius: 30px;
-  margin-bottom: 32px;
+  border-radius: 20px;
+  margin-bottom: 24px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 107, 107, 0.2);
   max-width: 600px;
@@ -40,9 +40,9 @@
 }
 
 .errorMessage {
-  font-size: 16px;
+  font-size: 14px;
   color: #ff6b6b;
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   font-weight: 500;
 }
 
@@ -50,9 +50,9 @@
   background-color: var(--accent);
   color: var(--white);
   border: none;
-  border-radius: 30px;
-  padding: 12px 24px;
-  font-size: 14px;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -66,18 +66,18 @@
 }
 
 .searchResults {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   text-align: center;
-  padding: 16px 24px;
+  padding: 12px 16px;
   background-color: var(--light-accent);
-  border-radius: 30px;
+  border-radius: 20px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .resultsInfo {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
   color: var(--black);
@@ -85,18 +85,104 @@
   font-weight: 500;
 }
 
-/* Адаптивність */
-@media (max-width: 768px) {
+/* Mobile styles (320px - 767px) */
+@media (max-width: 767px) {
   .container {
-    padding: 32px 16px;
+    padding: 24px 12px;
   }
   
   .header {
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
   
   .title {
-    font-size: 36px;
+    font-size: 28px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+  }
+  
+  .errorContainer {
+    padding: 20px 12px;
+    margin-bottom: 20px;
+  }
+  
+  .errorMessage {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  
+  .retryButton {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .searchResults {
+    margin-bottom: 20px;
+    padding: 10px 12px;
+  }
+  
+  .resultsInfo {
+    font-size: 13px;
+  }
+}
+
+/* Mobile small (320px - 374px) - гумова верстка */
+@media (max-width: 374px) {
+  .container {
+    padding: 20px 8px;
+  }
+  
+  .header {
+    margin-bottom: 24px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .subtitle {
+    font-size: 12px;
+  }
+  
+  .errorContainer {
+    padding: 16px 10px;
+    margin-bottom: 16px;
+  }
+  
+  .errorMessage {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .retryButton {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+  
+  .searchResults {
+    margin-bottom: 16px;
+    padding: 8px 10px;
+  }
+  
+  .resultsInfo {
+    font-size: 12px;
+  }
+}
+
+/* Tablet styles (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .container {
+    padding: 40px 24px;
+  }
+  
+  .header {
+    margin-bottom: 48px;
+  }
+  
+  .title {
+    font-size: 44px;
   }
   
   .subtitle {
@@ -105,32 +191,68 @@
   
   .errorContainer {
     padding: 32px 20px;
+    margin-bottom: 28px;
   }
   
   .errorMessage {
-    font-size: 14px;
+    font-size: 15px;
+    margin-bottom: 18px;
   }
   
   .retryButton {
     padding: 10px 20px;
-    font-size: 14px;
+    font-size: 13px;
+  }
+  
+  .searchResults {
+    margin-bottom: 28px;
+    padding: 14px 20px;
   }
   
   .resultsInfo {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
-@media (max-width: 480px) {
+/* Desktop styles (1280px+) */
+@media (min-width: 1280px) {
   .container {
-    padding: 24px 12px;
+    padding: 64px 20px;
+  }
+  
+  .header {
+    margin-bottom: 60px;
   }
   
   .title {
-    font-size: 28px;
+    font-size: 54px;
   }
   
   .subtitle {
+    font-size: 18px;
+  }
+  
+  .errorContainer {
+    padding: 40px 24px;
+    margin-bottom: 32px;
+  }
+  
+  .errorMessage {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .retryButton {
+    padding: 12px 24px;
     font-size: 14px;
+  }
+  
+  .searchResults {
+    margin-bottom: 32px;
+    padding: 16px 24px;
+  }
+  
+  .resultsInfo {
+    font-size: 16px;
   }
 }

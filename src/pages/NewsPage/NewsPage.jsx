@@ -126,8 +126,7 @@ function NewsPage() {
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
-              onPageChange={handlePageChange}
-              isLoading={loading}
+              onChange={handlePageChange}
             />
           )}
         </>

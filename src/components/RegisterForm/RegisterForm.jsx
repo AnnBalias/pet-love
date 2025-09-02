@@ -1,34 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import { api } from '../../services/api';
-import { useUser } from '../../contexts/UserContext';
+import { useUser } from '../../contexts/useUser';
+import { registerSchema } from '../../utils/validationSchemas';
 import styles from './RegisterForm.module.css';
-
-const registerSchema = yup.object({
-  name: yup
-    .string()
-    .required('Name is required')
-    .min(2, 'Name must be at least 2 characters long'),
-  email: yup
-    .string()
-    .required('Email is required')
-    .matches(
-      /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-      'Please enter a valid email address'
-    ),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(7, 'Password must be at least 7 characters long'),
-  confirmPassword: yup
-    .string()
-    .required('Please confirm your password')
-    .oneOf([yup.ref('password')], 'Passwords do not match'),
-});
 
 function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);

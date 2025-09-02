@@ -1,0 +1,163 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 0;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.closeBtn:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.closeBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+  color: #666;
+}
+
+.modalContent {
+  padding: 0 32px 32px;
+  text-align: center;
+}
+
+.modalTitle {
+  margin: 0 0 16px 0;
+  color: #2b2b2a;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.modalMessage {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 0 32px 32px;
+}
+
+.cancelBtn,
+.confirmBtn {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-width: 100px;
+}
+
+.cancelBtn {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.confirmBtn {
+  background-color: #ff4444;
+  color: #fff;
+}
+
+.confirmBtn:hover:not(:disabled) {
+  background-color: #e63939;
+  transform: translateY(-1px);
+}
+
+.cancelBtn:disabled,
+.confirmBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .modalOverlay {
+    padding: 16px;
+  }
+  
+  .modal {
+    max-width: 100%;
+  }
+  
+  .modalContent {
+    padding: 0 24px 24px;
+  }
+  
+  .modalTitle {
+    font-size: 20px;
+  }
+  
+  .modalMessage {
+    font-size: 14px;
+  }
+  
+  .modalActions {
+    padding: 0 24px 24px;
+    flex-direction: column;
+  }
+  
+  .cancelBtn,
+  .confirmBtn {
+    width: 100%;
+  }
+}

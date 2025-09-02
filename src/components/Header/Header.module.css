@@ -1,43 +1,229 @@
 .header {
-    display: flex;
-    align-items: center;
-    padding: 32px 64px;
-    position: relative;
-    z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  position: relative;
+  z-index: 10;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .headerHome {
-    background-color: var(--accent);
-    box-shadow: none;
-    margin: 16px 48px;
-    padding: 16px;
-    border-radius: 25px;
-    position: relative;
-    z-index: 10;
+  background-color: var(--accent);
+  box-shadow: none;
+  margin: 8px 16px;
+  padding: 12px 16px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 10;
 }
 
 .logo {
-    display: flex;
-    align-items: flex-end;
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: var(--black);
-    margin-right: 313px;
+  display: flex;
+  align-items: flex-end;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--black);
+  margin-right: 0;
+  flex-shrink: 0;
 }
 
 .headerHome .logo {
-    color: var(--white);
-    margin-right: 280px;
+  color: var(--white);
+  margin-right: 0;
 }
 
 .heart {
-    color: var(--accent);
-    width: 23px;
-    height: 23px;
+  color: var(--accent);
+  width: 18px;
+  height: 18px;
 }
 
 .headerHome .heart {
-    color: var(--white);
+  color: var(--white);
+}
+
+/* Desktop Navigation */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Mobile Menu Button */
+.mobileMenuBtn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  color: var(--black);
+  min-width: 40px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileMenuBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.headerHome .mobileMenuBtn {
+  color: var(--white);
+}
+
+.headerHome .mobileMenuBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menuIcon {
+  width: 24px;
+  height: 24px;
+  color: inherit;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.667;
+}
+
+/* Mobile styles (320px - 767px) */
+@media (max-width: 767px) {
+  .header {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .headerHome {
+    margin: 8px 12px;
+    padding: 10px 12px;
+    border-radius: 16px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .heart {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Hide desktop navigation on mobile */
+  .desktopNav {
+    display: none;
+  }
+
+  /* Show mobile menu button on mobile */
+  .mobileMenuBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menuIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Mobile small (320px - 374px) - гумова верстка */
+@media (max-width: 374px) {
+  .header {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .headerHome {
+    margin: 6px 8px;
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .heart {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Tablet styles (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .header {
+    padding: 20px 32px;
+    gap: 20px;
+  }
+
+  .headerHome {
+    margin: 12px 24px;
+    padding: 14px 20px;
+    border-radius: 22px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .heart {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Hide desktop navigation on tablet */
+  .desktopNav {
+    display: none;
+  }
+
+  /* Show mobile menu button on tablet */
+  .mobileMenuBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menuIcon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Desktop styles (1280px+) */
+@media (min-width: 1280px) {
+  .header {
+    padding: 32px 64px;
+    gap: 24px;
+  }
+
+  .headerHome {
+    margin: 16px 48px;
+    padding: 16px 24px;
+    border-radius: 25px;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .heart {
+    width: 23px;
+    height: 23px;
+  }
+
+  /* Show desktop navigation on desktop */
+  .desktopNav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Hide mobile menu button on desktop */
+  .mobileMenuBtn {
+    display: none;
+  }
 }

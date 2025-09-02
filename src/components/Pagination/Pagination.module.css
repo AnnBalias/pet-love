@@ -2,183 +2,242 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin: 48px 0;
+  gap: 8px;
+  margin-top: 32px;
   flex-wrap: wrap;
-  padding: 24px;
-  background-color: var(--white);
-  border-radius: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.paginationButton {
+.pageBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border: 2px solid #e0e0e0;
-  background-color: var(--white);
-  border-radius: 25px;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #666;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 600;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 40px;
 }
 
-.paginationButton:hover:not(:disabled) {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--white);
-  transform: translateY(-1px);
+.pageBtn:hover:not(:disabled) {
+  border-color: #f6b83d;
+  color: #f6b83d;
+  background-color: #fff8e6;
 }
 
-.paginationButton:disabled {
+.pageBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background-color: #f8f9fa;
 }
 
-.icon {
+.pageBtn.active {
+  background-color: #f6b83d;
+  border-color: #f6b83d;
+  color: #fff;
+}
+
+.pageBtn.active:hover {
+  background-color: #f6b83d;
+  color: #fff;
+}
+
+.pageBtn.dots {
+  border: none;
+  background: none;
+  cursor: default;
+  font-weight: 400;
+}
+
+.pageBtn.dots:hover {
+  background: none;
+  color: #666;
+}
+
+/* Стилі для кнопок з подвійними стрілками */
+.firstBtn,
+.lastBtn {
+  gap: -4px;
+}
+
+.firstBtn .arrowIcon:first-child,
+.lastBtn .arrowIcon:first-child {
+  margin-right: -8px;
+}
+
+.firstBtn .arrowIcon:last-child,
+.lastBtn .arrowIcon:last-child {
+  margin-left: -8px;
+}
+
+.arrowIcon {
   width: 16px;
   height: 16px;
-  fill: currentColor;
-}
-
-.doubleLeftIcon,
-.doubleRightIcon {
-  width: 12px;
-  height: 12px;
-  fill: currentColor;
-  position: absolute;
-}
-
-.doubleLeftIcon:first-child {
-  left: 8px;
-}
-
-.doubleLeftIcon:last-child {
-  left: 16px;
-}
-
-.doubleRightIcon:first-child {
-  right: 16px;
-}
-
-.doubleRightIcon:last-child {
-  right: 8px;
 }
 
 .pageNumbers {
   display: flex;
   gap: 4px;
-}
-
-.pageButton {
-  display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  min-width: 48px;
-  height: 48px;
-  padding: 0 16px;
-  border: 2px solid #e0e0e0;
-  background-color: var(--white);
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--black);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  line-height: 1.28571;
-  letter-spacing: -0.02em;
 }
 
-.pageButton:hover:not(:disabled) {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--white);
-  transform: translateY(-1px);
+.numberBtn {
+  min-width: 40px;
 }
 
-.pageButton.activePage {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--white);
-}
-
-.pageButton.activePage:hover {
-  background-color: #e5a636;
-  border-color: #e5a636;
-  transform: translateY(-1px);
-}
-
-.pageButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Адаптивність для мобільних пристроїв */
-@media (max-width: 768px) {
+/* Mobile styles (320px - 767px) */
+@media (max-width: 767px) {
   .pagination {
-    gap: 8px;
-    padding: 20px;
-    margin: 32px 0;
+    gap: 4px;
+    margin-top: 24px;
+    padding: 0 16px;
   }
-  
-  .paginationButton,
-  .pageButton {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-  }
-  
-  .pageButton {
-    padding: 0 12px;
-    font-size: 14px;
-  }
-  
-  .icon {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .doubleLeftIcon,
-  .doubleRightIcon {
-    width: 12px;
-    height: 12px;
-  }
-}
 
-@media (max-width: 480px) {
-  .pagination {
-    gap: 6px;
-    padding: 16px;
-  }
-  
-  .paginationButton,
-  .pageButton {
+  .pageBtn {
     width: 36px;
     height: 36px;
+    font-size: 13px;
+    min-width: 36px;
+    border-radius: 10px;
+  }
+
+  .numberBtn {
     min-width: 36px;
   }
-  
-  .pageButton {
-    padding: 0 8px;
-    font-size: 13px;
-  }
-  
-  .icon {
+
+  .arrowIcon {
     width: 14px;
     height: 14px;
   }
-  
-  .doubleLeftIcon,
-  .doubleRightIcon {
-    width: 10px;
-    height: 10px;
+
+  .pageNumbers {
+    gap: 2px;
+  }
+}
+
+/* Mobile small (320px - 374px) - гумова верстка */
+@media (max-width: 374px) {
+  .pagination {
+    gap: 2px;
+    margin-top: 20px;
+    padding: 0 8px;
+  }
+
+  .pageBtn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+    min-width: 32px;
+    border-radius: 8px;
+  }
+
+  .numberBtn {
+    min-width: 32px;
+  }
+
+  .arrowIcon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .pageNumbers {
+    gap: 1px;
+  }
+
+  /* Приховуємо деякі номери сторінок на дуже маленьких екранах */
+  .pageNumbers .numberBtn:not(.active):not(:first-child):not(:last-child) {
+    display: none;
+  }
+
+  .pageNumbers .dots {
+    display: none;
+  }
+}
+
+/* Tablet styles (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .pagination {
+    gap: 6px;
+    margin-top: 28px;
+  }
+
+  .pageBtn {
+    width: 38px;
+    height: 38px;
+    font-size: 13px;
+    min-width: 38px;
+  }
+
+  .numberBtn {
+    min-width: 38px;
+  }
+
+  .arrowIcon {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Desktop styles (1280px+) */
+@media (min-width: 1280px) {
+  .pagination {
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .pageBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    min-width: 40px;
+  }
+
+  .numberBtn {
+    min-width: 40px;
+  }
+
+  .arrowIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Додаткові hover ефекти для десктопу */
+  .pageBtn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(246, 184, 61, 0.2);
+  }
+}
+
+/* Додаткові стилі для кращої доступності */
+@media (prefers-reduced-motion: reduce) {
+  .pageBtn {
+    transition: none;
+  }
+}
+
+/* Стилі для темної теми (якщо буде додана в майбутньому) */
+@media (prefers-color-scheme: dark) {
+  .pageBtn {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #ccc;
+  }
+
+  .pageBtn:hover:not(:disabled) {
+    background-color: #3a3a3a;
+    border-color: #f6b83d;
+    color: #f6b83d;
+  }
+
+  .pageBtn.active {
+    background-color: #f6b83d;
+    border-color: #f6b83d;
+    color: #2a2a2a;
   }
 }

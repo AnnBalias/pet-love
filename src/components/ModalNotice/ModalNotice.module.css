@@ -1,0 +1,665 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 0;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.closeBtn:hover {
+  background-color: #f0f0f0;
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+  color: #666;
+}
+
+.modalContent {
+  padding: 0 32px 32px;
+}
+
+.noticeImage {
+  position: relative;
+  height: 300px;
+  background-color: #f8f8f8;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+}
+
+.imageIcon {
+  width: 64px;
+  height: 64px;
+  color: #ccc;
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categoryIcon {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+}
+
+.popularityBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f6b83d;
+  backdrop-filter: blur(4px);
+}
+
+.popularityIcon {
+  width: 16px;
+  height: 16px;
+  color: #f6b83d;
+}
+
+.noticeInfo {
+  color: #2b2b2a;
+}
+
+.noticeTitle {
+  margin: 0 0 24px 0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.noticeDetails {
+  margin-bottom: 24px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detailLabel {
+  color: #666;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.detailValue {
+  color: #2b2b2a;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.genderIcon {
+  width: 18px;
+  height: 18px;
+  color: #f6b83d;
+}
+
+.comment,
+.additionalInfo {
+  margin-bottom: 24px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #f6b83d;
+}
+
+.comment h3,
+.additionalInfo h3 {
+  margin: 0 0 12px 0;
+  color: #2b2b2a;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.comment p,
+.additionalInfo p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.favoriteBtn,
+.contactBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 2px solid #f6b83d;
+  border-radius: 12px;
+  background-color: transparent;
+  color: #f6b83d;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.favoriteBtn:hover,
+.contactBtn:hover {
+  background-color: #f6b83d;
+  color: #fff;
+}
+
+.favoriteBtn:disabled,
+.contactBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.favoriteBtn.favoriteActive {
+  background-color: #f6b83d;
+  color: #fff;
+}
+
+.favoriteBtn.favoriteActive:hover {
+  background-color: #e5a52e;
+  border-color: #e5a52e;
+}
+
+.favoriteIcon,
+.contactIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile styles (320px - 767px) */
+@media (max-width: 767px) {
+  .modalOverlay {
+    padding: 16px;
+  }
+  
+  .modal {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+  
+  .modalContent {
+    padding: 0 24px 24px;
+  }
+  
+  .modalHeader {
+    padding: 16px 16px 0;
+  }
+  
+  .closeBtn {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .closeIcon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .noticeImage {
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+  }
+  
+  .categoryBadge {
+    top: 12px;
+    left: 12px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .categoryIcon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .popularityBadge {
+    top: 12px;
+    right: 12px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  .popularityIcon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .noticeTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .detailRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+  
+  .detailLabel,
+  .detailValue {
+    font-size: 14px;
+  }
+  
+  .comment,
+  .additionalInfo {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .comment h3,
+  .additionalInfo h3 {
+    font-size: 16px;
+  }
+  
+  .comment p,
+  .additionalInfo p {
+    font-size: 14px;
+  }
+
+  .modalActions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .favoriteBtn,
+  .contactBtn {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
+
+/* Mobile small (320px - 374px) - гумова верстка */
+@media (max-width: 374px) {
+  .modalOverlay {
+    padding: 8px;
+  }
+  
+  .modal {
+    max-height: 98vh;
+    border-radius: 12px;
+  }
+  
+  .modalContent {
+    padding: 0 16px 16px;
+  }
+  
+  .modalHeader {
+    padding: 12px 12px 0;
+  }
+  
+  .closeBtn {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .closeIcon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .noticeImage {
+    height: 160px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+  }
+  
+  .categoryBadge {
+    top: 8px;
+    left: 8px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .categoryIcon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .popularityBadge {
+    top: 8px;
+    right: 8px;
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+  
+  .popularityIcon {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .noticeTitle {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .detailRow {
+    margin-bottom: 12px;
+    padding: 6px 0;
+  }
+  
+  .detailLabel,
+  .detailValue {
+    font-size: 13px;
+  }
+  
+  .comment,
+  .additionalInfo {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .comment h3,
+  .additionalInfo h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  .comment p,
+  .additionalInfo p {
+    font-size: 13px;
+  }
+
+  .modalActions {
+    gap: 6px;
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+
+  .favoriteBtn,
+  .contactBtn {
+    font-size: 13px;
+    padding: 8px 12px;
+    gap: 6px;
+  }
+  
+  .favoriteIcon,
+  .contactIcon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Tablet styles (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .modalOverlay {
+    padding: 24px;
+  }
+  
+  .modal {
+    max-width: 700px;
+    max-height: 92vh;
+  }
+  
+  .modalContent {
+    padding: 0 28px 28px;
+  }
+  
+  .noticeImage {
+    height: 250px;
+    margin-bottom: 22px;
+  }
+  
+  .noticeTitle {
+    font-size: 26px;
+    margin-bottom: 22px;
+  }
+  
+  .detailLabel,
+  .detailValue {
+    font-size: 15px;
+  }
+  
+  .comment,
+  .additionalInfo {
+    padding: 18px;
+    margin-bottom: 22px;
+  }
+  
+  .comment h3,
+  .additionalInfo h3 {
+    font-size: 17px;
+  }
+  
+  .comment p,
+  .additionalInfo p {
+    font-size: 15px;
+  }
+
+  .modalActions {
+    gap: 10px;
+  }
+
+  .favoriteBtn,
+  .contactBtn {
+    font-size: 15px;
+    padding: 11px 18px;
+  }
+}
+
+/* Desktop styles (1280px+) */
+@media (min-width: 1280px) {
+  .modalOverlay {
+    padding: 32px;
+  }
+  
+  .modal {
+    max-width: 800px;
+    max-height: 88vh;
+  }
+  
+  .modalContent {
+    padding: 0 40px 40px;
+  }
+  
+  .noticeImage {
+    height: 350px;
+    margin-bottom: 32px;
+  }
+  
+  .noticeTitle {
+    font-size: 32px;
+    margin-bottom: 28px;
+  }
+  
+  .detailLabel,
+  .detailValue {
+    font-size: 17px;
+  }
+  
+  .comment,
+  .additionalInfo {
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+  
+  .comment h3,
+  .additionalInfo h3 {
+    font-size: 20px;
+  }
+  
+  .comment p,
+  .additionalInfo p {
+    font-size: 17px;
+  }
+
+  .modalActions {
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 32px;
+  }
+
+  .favoriteBtn,
+  .contactBtn {
+    font-size: 17px;
+    padding: 14px 24px;
+    gap: 10px;
+  }
+  
+  .favoriteIcon,
+  .contactIcon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  /* Додаткові hover ефекти для десктопу */
+  .favoriteBtn:hover,
+  .contactBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(246, 184, 61, 0.3);
+  }
+}
+
+/* Додаткові стилі для кращої доступності */
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    animation: none;
+  }
+  
+  .favoriteBtn,
+  .contactBtn {
+    transition: none;
+  }
+}
+
+/* Стилі для темної теми (якщо буде додана в майбутньому) */
+@media (prefers-color-scheme: dark) {
+  .modal {
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+  
+  .modalHeader {
+    background-color: #2a2a2a;
+  }
+  
+  .noticeInfo {
+    color: #fff;
+  }
+  
+  .detailLabel {
+    color: #ccc;
+  }
+  
+  .detailValue {
+    color: #fff;
+  }
+  
+  .comment,
+  .additionalInfo {
+    background-color: #3a3a3a;
+    border-left-color: #f6b83d;
+  }
+  
+  .comment h3,
+  .additionalInfo h3 {
+    color: #fff;
+  }
+  
+  .comment p,
+  .additionalInfo p {
+    color: #ccc;
+  }
+}

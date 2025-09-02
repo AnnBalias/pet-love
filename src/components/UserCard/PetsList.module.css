@@ -1,0 +1,25 @@
+.petsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+.noPets {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  border: 1px dashed #ddd;
+}
+
+.noPets p {
+  margin: 0;
+  font-size: 16px;
+}

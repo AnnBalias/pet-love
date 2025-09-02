@@ -1,0 +1,108 @@
+.userBlock {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.avatarSection {
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.addAvatarBtn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.addAvatarBtn:hover {
+  background-color: #e8e8e8;
+}
+
+.addAvatarBtn:hover .addAvatarOverlay {
+  opacity: 1;
+}
+
+.defaultAvatar {
+  width: 40px;
+  height: 40px;
+  color: #888;
+}
+
+.addAvatarOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.editIcon {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.userName {
+  margin: 0 0 16px 0;
+  color: #2b2b2a;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.userField {
+  display: flex;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 500;
+  color: #2b2b2a;
+  min-width: 80px;
+}
+
+.value {
+  color: #666;
+}

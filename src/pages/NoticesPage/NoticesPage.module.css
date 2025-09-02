@@ -1,0 +1,55 @@
+.noticesPage {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Mobile styles (320px - 767px) */
+@media (max-width: 767px) {
+  .noticesPage {
+    padding: 16px 0;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
+}
+
+/* Mobile small (320px - 374px) - гумова верстка */
+@media (max-width: 374px) {
+  .noticesPage {
+    padding: 12px 0;
+  }
+  
+  .container {
+    padding: 0 8px;
+  }
+}
+
+/* Tablet styles (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .noticesPage {
+    padding: 24px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* Desktop styles (1280px+) */
+@media (min-width: 1280px) {
+  .noticesPage {
+    padding: 32px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+}

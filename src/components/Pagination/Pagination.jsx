@@ -1,105 +1,137 @@
 import Icon from '../Icon/Icon';
 import css from './Pagination.module.css';
 
-function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-  isLoading = false,
-}) {
-  const handlePageChange = (page) => {
-    if (page < 1 || page > totalPages || isLoading) return;
-    onPageChange(page);
-  };
+function Pagination({ currentPage, totalPages, onChange }) {
+  // Якщо сторінка одна - приховуємо пагінацію
+  if (totalPages <= 1) {
+    return null;
+  }
 
-  const renderPageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5;
+  const getVisiblePages = () => {
+    const delta = 2; // Кількість сторінок з кожного боку від поточної
+    const range = [];
+    const rangeWithDots = [];
 
-    if (totalPages <= maxVisiblePages) {
-      // Показуємо всі сторінки якщо їх мало
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      // Показуємо обмежену кількість сторінок
-      let startPage = Math.max(1, currentPage - 2);
-      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-      if (endPage - startPage + 1 < maxVisiblePages) {
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-      }
-
-      for (let i = startPage; i <= endPage; i++) {
-        pages.push(i);
-      }
+    // Додаємо сторінки навколо поточної
+    for (
+      let i = Math.max(2, currentPage - delta);
+      i <= Math.min(totalPages - 1, currentPage + delta);
+      i++
+    ) {
+      range.push(i);
     }
 
-    return pages;
+    // Додаємо першу сторінку та крапки якщо потрібно
+    if (currentPage - delta > 2) {
+      rangeWithDots.push(1, '...');
+    } else {
+      rangeWithDots.push(1);
+    }
+
+    // Додаємо проміжні сторінки
+    rangeWithDots.push(...range);
+
+    // Додаємо останню сторінку та крапки якщо потрібно
+    if (currentPage + delta < totalPages - 1) {
+      rangeWithDots.push('...', totalPages);
+    } else if (totalPages > 1) {
+      rangeWithDots.push(totalPages);
+    }
+
+    return rangeWithDots;
   };
 
-  if (totalPages <= 1) return null;
+  const handlePageClick = (page) => {
+    if (page !== '...' && page !== currentPage && typeof page === 'number') {
+      onChange(page);
+    }
+  };
+
+  const handleFirstPage = () => {
+    if (currentPage > 1) {
+      onChange(1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      onChange(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      onChange(currentPage + 1);
+    }
+  };
+
+  const handleLastPage = () => {
+    if (currentPage < totalPages) {
+      onChange(totalPages);
+    }
+  };
+
+  const visiblePages = getVisiblePages();
 
   return (
     <div className={css.pagination}>
-      {/* Кнопка "На першу сторінку" */}
+      {/* Кнопка першої сторінки */}
       <button
-        className={`${css.paginationButton} ${css.firstPageButton}`}
-        onClick={() => handlePageChange(1)}
-        disabled={currentPage === 1 || isLoading}
-        aria-label="Go to first page"
+        className={`${css.pageBtn} ${css.firstBtn} ${currentPage === 1 ? css.disabled : ''}`}
+        onClick={handleFirstPage}
+        disabled={currentPage === 1}
+        title="First page"
       >
-        <Icon name="left" className={css.doubleLeftIcon} />
-        <Icon name="left" className={css.doubleLeftIcon} />
+        <Icon name="left" className={css.arrowIcon} />
+        <Icon name="left" className={css.arrowIcon} />
       </button>
 
-      {/* Кнопка "Попередня сторінка" */}
+      {/* Кнопка попередньої сторінки */}
       <button
-        className={`${css.paginationButton} ${css.prevButton}`}
-        onClick={() => handlePageChange(currentPage - 1)}
-        disabled={currentPage === 1 || isLoading}
-        aria-label="Go to previous page"
+        className={`${css.pageBtn} ${css.prevBtn} ${currentPage === 1 ? css.disabled : ''}`}
+        onClick={handlePrevPage}
+        disabled={currentPage === 1}
+        title="Previous page"
       >
-        <Icon name="left" className={css.icon} />
+        <Icon name="left" className={css.arrowIcon} />
       </button>
 
       {/* Номери сторінок */}
       <div className={css.pageNumbers}>
-        {renderPageNumbers().map((page) => (
+        {visiblePages.map((page, index) => (
           <button
-            key={page}
-            className={`${css.pageButton} ${
-              page === currentPage ? css.activePage : ''
-            }`}
-            onClick={() => handlePageChange(page)}
-            disabled={isLoading}
-            aria-label={`Go to page ${page}`}
-            aria-current={page === currentPage ? 'page' : undefined}
+            key={index}
+            className={`${css.pageBtn} ${css.numberBtn} ${
+              page === currentPage ? css.active : ''
+            } ${page === '...' ? css.dots : ''}`}
+            onClick={() => handlePageClick(page)}
+            disabled={page === '...'}
+            title={page === '...' ? '' : `Page ${page}`}
           >
             {page}
           </button>
         ))}
       </div>
 
-      {/* Кнопка "Наступна сторінка" */}
+      {/* Кнопка наступної сторінки */}
       <button
-        className={`${css.paginationButton} ${css.nextButton}`}
-        onClick={() => handlePageChange(currentPage + 1)}
-        disabled={currentPage === totalPages || isLoading}
-        aria-label="Go to next page"
+        className={`${css.pageBtn} ${css.nextBtn} ${currentPage === totalPages ? css.disabled : ''}`}
+        onClick={handleNextPage}
+        disabled={currentPage === totalPages}
+        title="Next page"
       >
-        <Icon name="right" className={css.icon} />
+        <Icon name="right" className={css.arrowIcon} />
       </button>
 
-      {/* Кнопка "На останню сторінку" */}
+      {/* Кнопка останньої сторінки */}
       <button
-        className={`${css.paginationButton} ${css.lastPageButton}`}
-        onClick={() => handlePageChange(totalPages)}
-        disabled={currentPage === totalPages || isLoading}
-        aria-label="Go to last page"
+        className={`${css.pageBtn} ${css.lastBtn} ${currentPage === totalPages ? css.disabled : ''}`}
+        onClick={handleLastPage}
+        disabled={currentPage === totalPages}
+        title="Last page"
       >
-        <Icon name="right" className={css.doubleRightIcon} />
-        <Icon name="right" className={css.doubleRightIcon} />
+        <Icon name="right" className={css.arrowIcon} />
+        <Icon name="right" className={css.arrowIcon} />
       </button>
     </div>
   );

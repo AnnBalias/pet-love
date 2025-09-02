@@ -5,35 +5,44 @@
   justify-content: center;
   background-color: var(--accent);
   color: var(--white);
-  border-radius: 60px;
-  width: 1216px;
-  height: 654px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
   margin: 0 auto;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  padding: 20px;
 }
 
 .errorTitle {
   display: flex;
   align-items: center;
-  font-size: 300px;
+  font-size: 120px;
   line-height: 1;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+}
+
+.errorImage {
+  width: 60px;
+  height: 60px;
+  margin: 0 8px;
 }
 
 .errorText {
   font-weight: 700;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 1.16667;
   letter-spacing: -0.03em;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  text-align: center;
 }
 
 .homeLink {
   background-color: #fff4df;
-  border-radius: 30px;
-  padding: 14px 30px;
+  border-radius: 20px;
+  padding: 10px 20px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.25;
   letter-spacing: -0.03em;
   color: var(--accent);
@@ -42,4 +51,133 @@
 
 .homeLink:hover {
   background-color: #fbe7c1;
+}
+
+/* Mobile styles (320px - 767px) */
+@media (max-width: 767px) {
+  .container {
+    border-radius: 24px;
+    height: 250px;
+    margin-bottom: 20px;
+    padding: 16px;
+  }
+
+  .errorTitle {
+    font-size: 100px;
+    margin-bottom: 16px;
+  }
+
+  .errorImage {
+    width: 50px;
+    height: 50px;
+    margin: 0 6px;
+  }
+
+  .errorText {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .homeLink {
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile small (320px - 374px) - гумова верстка */
+@media (max-width: 374px) {
+  .container {
+    border-radius: 20px;
+    height: 200px;
+    margin-bottom: 16px;
+    padding: 12px;
+  }
+
+  .errorTitle {
+    font-size: 80px;
+    margin-bottom: 12px;
+  }
+
+  .errorImage {
+    width: 40px;
+    height: 40px;
+    margin: 0 4px;
+  }
+
+  .errorText {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .homeLink {
+    border-radius: 12px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Tablet styles (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .container {
+    border-radius: 40px;
+    height: 400px;
+    margin-bottom: 28px;
+    padding: 24px;
+  }
+
+  .errorTitle {
+    font-size: 180px;
+    margin-bottom: 24px;
+  }
+
+  .errorImage {
+    width: 80px;
+    height: 80px;
+    margin: 0 10px;
+  }
+
+  .errorText {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .homeLink {
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* Desktop styles (1280px+) */
+@media (min-width: 1280px) {
+  .container {
+    border-radius: 60px;
+    width: 1216px;
+    height: 654px;
+    margin-bottom: 32px;
+    padding: 32px;
+  }
+
+  .errorTitle {
+    font-size: 300px;
+    margin-bottom: 40px;
+  }
+
+  .errorImage {
+    width: 100px;
+    height: 100px;
+    margin: 0 12px;
+  }
+
+  .errorText {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .homeLink {
+    border-radius: 30px;
+    padding: 14px 30px;
+    font-size: 16px;
+  }
 }

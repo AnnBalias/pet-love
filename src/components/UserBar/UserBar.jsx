@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
-import { useUser } from '../../contexts/UserContext';
+import { useUser } from '../../contexts/useUser';
 import css from './UserBar.module.css';
 
 function UserBar({ isHome = false }) {

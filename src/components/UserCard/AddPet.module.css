@@ -1,0 +1,26 @@
+.addPetBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #f6b83d;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #f6b83d;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.addPetBtn:hover {
+  background-color: #f6b83d;
+  color: #fff;
+  text-decoration: none;
+}
+
+.plusIcon {
+  width: 16px;
+  height: 16px;
+}

@@ -1,143 +1,32 @@
-// Використовуємо проксі для розробки або прямий URL для продакшену
-const BASE_URL = import.meta.env.DEV
-  ? '/api'
-  : 'https://petlove.b.goit.study/api';
-
-// Функція для виконання HTTP запитів
-async function fetchAPI(endpoint, options = {}) {
-  const url = `${BASE_URL}${endpoint}`;
-
-  // Отримуємо токен для авторизованих запитів
-  const token = getToken();
-
-  const defaultOptions = {
-    method: 'GET',
-    headers: {},
-  };
-
-  // Додаємо Content-Type тільки для JSON запитів
-  if (!(options.body instanceof FormData)) {
-    defaultOptions.headers['Content-Type'] = 'application/json';
-  }
-
-  // Додаємо токен авторизації якщо він є
-  if (token) {
-    defaultOptions.headers['Authorization'] = `Bearer ${token}`;
-  }
-
-  const config = {
-    ...defaultOptions,
-    ...options,
-    headers: {
-      ...defaultOptions.headers,
-      ...options.headers,
-    },
-  };
-
-  try {
-    const response = await fetch(url, config);
-
-    // Перевіряємо чи є контент у відповіді
-    const contentType = response.headers.get('content-type');
-    let data;
-
-    if (contentType && contentType.includes('application/json')) {
-      data = await response.json();
-    } else {
-      data = await response.text();
-    }
-
-    if (!response.ok) {
-      // Специфічні повідомлення для різних статусів
-      let errorMessage = '';
-
-      switch (response.status) {
-        case 401:
-          errorMessage = 'Unauthorized. Please login again.';
-          removeToken(); // Видаляємо недійсний токен
-          break;
-        case 403:
-          errorMessage = 'Access forbidden.';
-          break;
-        case 404:
-          errorMessage = 'Resource not found.';
-          break;
-        case 422:
-          errorMessage = 'Validation error. Please check your input.';
-          break;
-        case 500:
-          errorMessage = 'Server error. Please try again later.';
-          break;
-        default:
-          errorMessage = `HTTP error! status: ${response.status}`;
-      }
-
-      // Якщо відповідь містить JSON з повідомленням про помилку
-      if (typeof data === 'object' && data.message) {
-        errorMessage = data.message;
-      }
-      // Якщо відповідь - текст і не порожній
-      else if (typeof data === 'string' && data.trim()) {
-        errorMessage = data;
-      }
-
-      throw new Error(errorMessage);
-    }
-
-    return data;
-  } catch (error) {
-    // Додаткова обробка помилок мережі
-    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      throw new Error('Network error. Please check your internet connection.');
-    }
-
-    throw error;
-  }
-}
-
-// Функція для отримання токена з localStorage
-function getToken() {
-  return localStorage.getItem('token');
-}
-
-// Функція для збереження токена в localStorage
-function setToken(token) {
-  localStorage.setItem('token', token);
-}
-
-// Функція для видалення токена з localStorage
-function removeToken() {
-  localStorage.removeItem('token');
-}
+import { API_ENDPOINTS, STORAGE_KEYS } from '../utils/constants.js';
+import {
+  fetchAPI,
+  setToken,
+  removeToken,
+  createQueryString,
+  storage,
+} from '../utils/apiHelpers.js';
 
 // API функції
 export const api = {
   // Отримання списку друзів
-  getFriends: () => fetchAPI('/friends'),
+  getFriends: () => fetchAPI(API_ENDPOINTS.FRIENDS),
 
   // Отримання новин з параметрами
   getNews: (params = {}) => {
     const { keyword, page, limit = 6 } = params;
-
-    // Тимчасово повертаємося до query string для тестування
-    const queryParts = [
-      page && `page=${page}`,
-      limit && `limit=${limit}`,
-      keyword && `keyword=${encodeURIComponent(keyword)}`,
-    ].filter(Boolean);
-
-    const queryString = queryParts.join('&');
-    const endpoint = queryString ? `/news?${queryString}` : '/news';
+    const queryParams = { page, limit, keyword };
+    const queryString = createQueryString(queryParams);
+    const endpoint = queryString
+      ? `${API_ENDPOINTS.NEWS}${queryString}`
+      : API_ENDPOINTS.NEWS;
 
     return fetchAPI(endpoint);
   },
 
-  // Отримання оголошень
-  getNotices: () => fetchAPI('/notices'),
-
   // Реєстрація користувача
   register: async (userData) => {
-    const response = await fetchAPI('/users/signup', {
+    const response = await fetchAPI(`${API_ENDPOINTS.USERS}/signup`, {
       method: 'POST',
       body: JSON.stringify({
         name: userData.name,
@@ -156,7 +45,7 @@ export const api = {
 
   // Авторизація користувача
   login: async (userData) => {
-    const response = await fetchAPI('/users/signin', {
+    const response = await fetchAPI(`${API_ENDPOINTS.USERS}/signin`, {
       method: 'POST',
       body: JSON.stringify({
         email: userData.email,
@@ -172,41 +61,62 @@ export const api = {
     return response;
   },
 
-  // Вихід користувача
+  // Вихід користувача (локальний)
   logout: () => {
     removeToken();
+    storage.remove(STORAGE_KEYS.USER_DATA);
+  },
+
+  // Вихід користувача з backend (видалення сесії)
+  logoutSession: async () => {
+    try {
+      const response = await fetchAPI(`${API_ENDPOINTS.USERS}/logout`, {
+        method: 'POST',
+      });
+
+      // Видаляємо токен після успішного logout
+      removeToken();
+      storage.remove(STORAGE_KEYS.USER_DATA);
+
+      return response;
+    } catch (error) {
+      // Навіть якщо backend повернув помилку, видаляємо токен
+      removeToken();
+      storage.remove(STORAGE_KEYS.USER_DATA);
+      throw error;
+    }
   },
 
   // Отримання поточного користувача
   getCurrentUser: async () => {
-    const token = getToken();
-    if (!token) {
-      return null;
-    }
-
     try {
-      // Робимо запит до API для отримання даних користувача
-      const userData = await fetchAPI('/users/current');
+      const userData = await fetchAPI(`${API_ENDPOINTS.USERS}/current`);
+      storage.set(STORAGE_KEYS.USER_DATA, userData);
       return userData;
     } catch {
       // Якщо запит не вдався, повертаємо дані з localStorage як fallback
-      const localUserData = localStorage.getItem('userData');
-      return localUserData ? JSON.parse(localUserData) : null;
+      return storage.get(STORAGE_KEYS.USER_DATA);
     }
-  },
-
-  // Збереження даних користувача
-  setUserData: (userData) => {
-    localStorage.setItem('userData', JSON.stringify(userData));
   },
 
   // Оновлення профілю користувача
   updateProfile: async (userData) => {
-    const response = await fetchAPI('/users/profile', {
+    const response = await fetchAPI(`${API_ENDPOINTS.USERS}/profile`, {
       method: 'PATCH',
       body: JSON.stringify(userData),
     });
+
+    // Оновлюємо збережені дані користувача
+    if (response) {
+      storage.set(STORAGE_KEYS.USER_DATA, response);
+    }
+
     return response;
+  },
+
+  // Оновлення користувача (аліас для updateProfile)
+  updateUser: async (userData) => {
+    return api.updateProfile(userData);
   },
 
   // Завантаження аватара
@@ -214,30 +124,104 @@ export const api = {
     const formData = new FormData();
     formData.append('avatar', file);
 
-    const response = await fetchAPI('/users/avatar', {
+    const response = await fetchAPI(API_ENDPOINTS.AVATAR, {
       method: 'POST',
-      headers: {
-        // Не встановлюємо Content-Type для FormData
-      },
       body: formData,
     });
     return response;
   },
-};
 
-// Функція для перевірки з'єднання з сервером
-export const checkServerConnection = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/health`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+  // Отримання улюбленців користувача
+  getUserPets: () => fetchAPI(API_ENDPOINTS.PETS),
+
+  // Видалення улюбленця
+  deletePet: async (petId) => {
+    const response = await fetchAPI(`${API_ENDPOINTS.PETS}/${petId}`, {
+      method: 'DELETE',
     });
-    return response.ok;
-  } catch {
-    return false;
-  }
+    return response;
+  },
+
+  // Додавання улюбленця
+  addPet: async (petData) => {
+    const response = await fetchAPI(API_ENDPOINTS.PETS, {
+      method: 'POST',
+      body: JSON.stringify(petData),
+    });
+    return response;
+  },
+
+  // Отримання улюблених оголошень
+  getFavoriteNotices: () => fetchAPI(API_ENDPOINTS.FAVORITES),
+
+  // Отримання переглянутих оголошень
+  getViewedNotices: () => fetchAPI(API_ENDPOINTS.VIEWED),
+
+  // Видалення з улюблених
+  removeFromFavorites: async (noticeId) => {
+    const response = await fetchAPI(`${API_ENDPOINTS.FAVORITES}/${noticeId}`, {
+      method: 'DELETE',
+    });
+    return response;
+  },
+
+  // Отримання оголошень з фільтрами
+  getNotices: async (params = '') => {
+    const endpoint = params
+      ? `${API_ENDPOINTS.NOTICES}?${params}`
+      : API_ENDPOINTS.NOTICES;
+    return fetchAPI(endpoint);
+  },
+
+  // Отримання категорій
+  getCategories: () => fetchAPI(API_ENDPOINTS.CATEGORIES),
+
+  // Отримання статей
+  getGenders: () => fetchAPI(API_ENDPOINTS.GENDERS),
+
+  // Отримання типів улюбленців
+  getPetTypes: () => fetchAPI(API_ENDPOINTS.PET_TYPES),
+
+  // Отримання локацій
+  getLocations: () => fetchAPI(API_ENDPOINTS.LOCATIONS),
+
+  // Отримання детальної інформації про оголошення
+  getNoticeDetails: async (noticeId) => {
+    const response = await fetchAPI(`${API_ENDPOINTS.NOTICES}/${noticeId}`);
+    return response;
+  },
+
+  // Додавання до улюблених
+  addToFavorites: async (noticeId) => {
+    const response = await fetchAPI(`${API_ENDPOINTS.FAVORITES}/${noticeId}`, {
+      method: 'POST',
+    });
+    return response;
+  },
+
+  // Отримання списку міст
+  getCities: (params = {}) => {
+    const { keyword } = params;
+    const queryParams = { keyword };
+    const queryString = createQueryString(queryParams);
+    const endpoint = queryString
+      ? `${API_ENDPOINTS.CITIES}${queryString}`
+      : API_ENDPOINTS.CITIES;
+
+    return fetchAPI(endpoint);
+  },
+
+  // Отримання міст тварин з нотаток
+  getCitiesLocations: (params = {}) => {
+    const { keyword } = params;
+    const queryParams = { keyword };
+    const queryString = createQueryString(queryParams);
+    const endpoint = queryString
+      ? `${API_ENDPOINTS.CITIES_LOCATIONS}${queryString}`
+      : API_ENDPOINTS.CITIES_LOCATIONS;
+
+    return fetchAPI(endpoint);
+  },
 };
 
 export default api;

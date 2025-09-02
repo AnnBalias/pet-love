@@ -2,46 +2,46 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
 }
 
 .loginForm {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
 }
 
 .title {
   text-align: center;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: #333;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   letter-spacing: -0.02em;
 }
 
 .text {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: #666;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .inputWrapper {
@@ -49,36 +49,36 @@
 }
 
 .input {
-  padding: 12px 16px;
+  padding: 10px 14px;
   border: 2px solid #e1e5e9;
-  border-radius: 12px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 14px;
   transition: all 0.3s ease;
   background: #fff;
   width: 100%;
 }
 
 .inputWrapper .input {
-  padding-right: 48px; /* Місце для іконки */
+  padding-right: 40px; /* Місце для іконки */
 }
 
 .checkIcon {
   position: absolute;
-  right: 16px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   color: #4CAF50;
 }
 
 .crossIcon {
   position: absolute;
-  right: 16px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   color: #ff6b6b;
 }
 
@@ -87,12 +87,12 @@
 }
 
 .passwordWrapper .input {
-  padding-right: 80px; /* Місце для іконки ока та іконки валідації */
+  padding-right: 70px; /* Місце для іконки ока та іконки валідації */
 }
 
 .passwordWrapper .checkIcon,
 .passwordWrapper .crossIcon {
-  right: 48px; /* Розташовуємо іконки валідації зліва від іконки ока */
+  right: 40px; /* Розташовуємо іконки валідації зліва від іконки ока */
 }
 
 .input:focus {
@@ -112,9 +112,9 @@
 
 .error {
   color: #ff6b6b;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 .errorMessage {
@@ -122,22 +122,22 @@
   border: 1px solid #ff6b6b;
   border-radius: 8px;
   color: #ff6b6b;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
-  padding: 12px 16px;
-  margin-bottom: 20px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
   text-align: center;
 }
 
 .eyeButton {
   position: absolute;
-  right: 12px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 3px;
   border-radius: 4px;
   transition: all 0.3s ease;
   display: flex;
@@ -156,8 +156,8 @@
 }
 
 .eyeIcon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   color: #666;
   transition: color 0.3s ease;
 }
@@ -170,13 +170,13 @@
   background: var(--accent);
   color: white;
   border: none;
-  padding: 14px 24px;
-  border-radius: 12px;
-  font-size: 16px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .submitButton:hover {
@@ -204,21 +204,21 @@
 
 .linkContainer {
   text-align: center;
-  margin-top: 24px;
-  padding-top: 20px;
+  margin-top: 20px;
+  padding-top: 16px;
   border-top: 1px solid #e1e5e9;
 }
 
 .linkText {
   color: #666;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .link {
   color: var(--accent);
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   transition: color 0.3s ease;
 }
 
@@ -227,13 +227,168 @@
   text-decoration: underline;
 }
 
-@media (max-width: 480px) {
-  .loginForm {
-    padding: 30px 20px;
-    margin: 10px;
+/* Mobile styles (320px - 767px) */
+@media (max-width: 767px) {
+  .loginContainer {
+    padding: 12px;
   }
-  
+
+  .loginForm {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .text {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .form {
+    gap: 14px;
+  }
+
+  .input {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .submitButton {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .linkContainer {
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+}
+
+/* Mobile small (320px - 374px) - гумова верстка */
+@media (max-width: 374px) {
+  .loginContainer {
+    padding: 8px;
+  }
+
+  .loginForm {
+    padding: 16px 12px;
+    border-radius: 10px;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .text {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .form {
+    gap: 12px;
+  }
+
+  .input {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .submitButton {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .linkContainer {
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+}
+
+/* Tablet styles (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .loginContainer {
+    padding: 20px;
+  }
+
+  .loginForm {
+    padding: 32px 28px;
+    border-radius: 18px;
+    max-width: 450px;
+  }
+
   .title {
     font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .text {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .form {
+    gap: 18px;
+  }
+
+  .input {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  .submitButton {
+    padding: 14px 22px;
+    font-size: 15px;
+  }
+
+  .linkContainer {
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+}
+
+/* Desktop styles (1280px+) */
+@media (min-width: 1280px) {
+  .loginContainer {
+    padding: 20px;
+  }
+
+  .loginForm {
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 450px;
+  }
+
+  .title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .text {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .form {
+    gap: 20px;
+  }
+
+  .input {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .submitButton {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+
+  .linkContainer {
+    margin-top: 24px;
+    padding-top: 20px;
   }
 }

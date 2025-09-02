@@ -1,0 +1,40 @@
+.title {
+  margin: 0 0 24px 0;
+  color: #2b2b2a;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Mobile styles (320px - 767px) */
+@media (max-width: 767px) {
+  .title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Mobile small (320px - 374px) - гумова верстка */
+@media (max-width: 374px) {
+  .title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+}
+
+/* Tablet styles (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .title {
+    font-size: 28px;
+    margin-bottom: 28px;
+  }
+}
+
+/* Desktop styles (1280px+) */
+@media (min-width: 1280px) {
+  .title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+}

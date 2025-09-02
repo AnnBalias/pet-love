@@ -1,29 +1,46 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import catImage from '../../assets/images/cat.png';
-import { useUser } from '../../contexts/UserContext';
+import { useUser } from '../../contexts/useUser';
+import { useNotification } from '../../contexts/useNotification';
+import { api } from '../../services/api';
+import ModalApproveAction from '../ModalApproveAction/ModalApproveAction';
 import css from './LogOutBtn.module.css';
 
 function LogOutBtn({ isHome = false }) {
   const [showModal, setShowModal] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const navigate = useNavigate();
   const { logout } = useUser();
+  const { showError } = useNotification();
 
   const handleLogout = () => {
     setShowModal(true);
   };
 
-  const handleConfirmLogout = () => {
-    // Виконуємо логаут через контекст
-    logout();
-    setShowModal(false);
+  const handleConfirmLogout = async () => {
+    setIsLoggingOut(true);
 
-    // Перенаправляємо на сторінку логіну
-    navigate('/login');
+    try {
+      // Відправляємо запит на backend для видалення сесії
+      await api.logoutSession();
+    } catch (error) {
+      console.error('Error logging out from backend:', error);
+      showError('Failed to logout from server. Please try again.');
+    } finally {
+      // Незалежно від відповіді backend - очищаємо клієнт
+      logout();
+      setShowModal(false);
+      setIsLoggingOut(false);
+
+      // Редірект на Home page
+      navigate('/');
+    }
   };
 
-  const handleCancelLogout = () => {
-    setShowModal(false);
+  const handleCloseModal = () => {
+    if (!isLoggingOut) {
+      setShowModal(false);
+    }
   };
 
   // Приховуємо кнопку на домашній сторінці
@@ -41,22 +58,16 @@ function LogOutBtn({ isHome = false }) {
         Log Out
       </button>
 
-      {showModal && (
-        <div className={css.modalOverlay} onClick={handleCancelLogout}>
-          <div className={css.modal} onClick={(e) => e.stopPropagation()}>
-            <img src={catImage} alt="Cat" className={css.catImg} />
-            <h3 className={css.modalTitle}>Already leaving?</h3>
-            <div className={css.modalButtons}>
-              <button className={css.confirmBtn} onClick={handleConfirmLogout}>
-                Yes
-              </button>
-              <button className={css.cancelBtn} onClick={handleCancelLogout}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ModalApproveAction
+        isOpen={showModal}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmLogout}
+        title="Already leaving?"
+        message="Are you sure you want to log out? You will need to log in again to access your account."
+        confirmText="Yes, Log Out"
+        cancelText="Cancel"
+        isLoading={isLoggingOut}
+      />
     </>
   );
 }
